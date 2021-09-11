@@ -14,3 +14,5 @@ class Post(models.Model):
     pub_date=models.DateTimeField()
     
 
+class Followers(models.Model):
+    pass

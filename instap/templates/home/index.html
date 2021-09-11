@@ -11,7 +11,7 @@
             <thead>
 
                 <tr>
-                    <th>Name</th>
+                    <th style="text-transform: uppercase;">{{request.user}}</th>
                     <th><button class="btn-primary">Follow</button></th>
                 </tr>
 
@@ -22,7 +22,7 @@
 
                 <tr>
                     <td>No of posts:</td>
-                    <td>{{posts}}</td>
+                    <td>{{post|length}}</td>
                 </tr>
                 <tr>
                     <td>Bio</td>
@@ -35,38 +35,19 @@
 
 </div>
 <h1 class="text-center">POSTS</h1>
-<div class="container" style="display:flex; flex-wrap: wrap; border: solid black 2px; margin:15px; ">
 
+<div class="container" style="display:flex; flex-wrap: wrap; border: solid black 2px; margin:15px; ">
+    {%for post in post%}
     <div class="panel panel-default " style="width:max-content ">
-        <div class="panel-heading ">Panel Heading</div>
-        <div class="panel-body ">Panel Content</div>
-        <div class="panel-footer ">Panel Footer</div>
+        <!-- <div class="panel-heading ">{{post.userpost}}</div> -->
+        <div class="panel-body" style="width:200px;height:200px;"><img src="{{post.userpost.url}}" alt="" style="width:100%; height:100%"></div>
+        <!-- <div class="panel-footer ">Panel Footer</div> -->
     </div>
-    <div class="panel panel-default " style="width:max-content ">
-        <div class="panel-heading ">Panel Heading</div>
-        <div class="panel-body ">Panel Content</div>
-        <div class="panel-footer ">Panel Footer</div>
-    </div>
-    <div class="panel panel-default " style="width:max-content ">
-        <div class="panel-heading ">Panel Heading</div>
-        <div class="panel-body ">Panel Content</div>
-        <div class="panel-footer ">Panel Footer</div>
-    </div>
-    <div class="panel panel-default " style="width:max-content ">
-        <div class="panel-heading ">Panel Heading</div>
-        <div class="panel-body ">Panel Content</div>
-        <div class="panel-footer ">Panel Footer</div>
-    </div>
-    <div class="panel panel-default " style="width:max-content ">
-        <div class="panel-heading ">Panel Heading</div>
-        <div class="panel-body ">Panel Content</div>
-        <div class="panel-footer ">Panel Footer</div>
-    </div>
-    <div class="panel panel-default " style="width:max-content ">
-        <div class="panel-heading ">Panel Heading</div>
-        <div class="panel-body ">Panel Content</div>
-        <div class="panel-footer ">Panel Footer</div>
-    </div>
+    {%empty%}
+    <h1>0 posts</h1>
+    {%endfor%}
+
+
 </div>
 
 </div>

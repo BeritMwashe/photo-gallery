@@ -12,8 +12,7 @@ class Post(models.Model):
     description=models.CharField(max_length=1000)
     title=models.CharField(max_length=50)
     pub_date=models.DateTimeField()
-    
-
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
 class Followers(models.Model):
     pass
 

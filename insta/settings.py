@@ -80,7 +80,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
 
-        'NAME': 'crt',
+        'NAME': 'insta',
         'USER':'mwashe',
         'PASSWORD':'github2122',
 

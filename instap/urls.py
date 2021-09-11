@@ -6,7 +6,8 @@ from . import views
 
 
 urlpatterns=[
-    url(r'^$',views.home,name='indexpage'),]
+    url(r'^$',views.home,name='indexpage'),
+    url(r'^$',views.singlepost,name='singlepost'),]
 
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

@@ -9,10 +9,10 @@ class Employee(models.Model):
 
 class Post(models.Model):
     userpost=models.ImageField(upload_to='posts')
-    description=models.CharField(max_length=1000)
+    bio=models.CharField(max_length=1000)
     title=models.CharField(max_length=50)
-    pub_date=models.DateTimeField()
-    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    pub_date=models.DateTimeField(auto_now_add=True)
+    owner=models.ForeignKey(User,on_delete=models.CASCADE)
 class Followers(models.Model):
     pass
 

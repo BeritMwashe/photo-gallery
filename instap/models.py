@@ -16,3 +16,6 @@ class Post(models.Model):
 
 class Followers(models.Model):
     pass
+
+class Following(models.Model):
+    pass

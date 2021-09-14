@@ -29,10 +29,11 @@ urlpatterns = [
     #     name='django_registration_register',
     # ),
     url('accounts/register/',
-        RegistrationView.as_view(success_url='/'),
+        RegistrationView.as_view(success_url='/accounts/login'),
         name='django_registration_register'),
     path('admin/', admin.site.urls),
     url(r'^accounts/', include('django_registration.backends.one_step.urls')),
     url(r'^accounts/',include('django.contrib.auth.urls')),
+    
     path('', include('instap.urls')),
 ]

@@ -1,23 +1,22 @@
-{%extends "home/base.html"%} {%block content%}
-<div class="container-fluid" style="display:flex;border:  solid black 2px; margin:15px;">
+{%extends "home/base.html"%}{%block content%}
 
-
-
-    <div class="circular-landscape" style="margin:10px;display:inline-block;position:relative; width:200px;height:200px;overflow:hidden;border-radius: 50%;">
-        <img src="{{request.user.employee.profile_img.url}}" alt="" style=" width:auto; height:100%; ">
+<div class="container-fluid" style="display:flex;width:100%;border:  solid black 2px; margin:15px;">
+    <div class="circular-landscape" style=" background-color:black;margin:10px;display:inline-block;position:relative; width:200px;height:200px;overflow:hidden;border-radius: 50%;">
+        <img src="{{user.employee.profile_img.url}}" alt="" style=" width:100%; height:100%; ">
     </div>
     <div class="tb" style="margin-left:10px;">
         <table class="table table-dark text-black" style="width:auto">
             <thead>
 
                 <tr>
-                    <th style="text-transform: uppercase;">{{request.user}}</th>
-                    <th><button class="btn-primary">Follow</button></th>
+                    <th style="text-transform: uppercase;">{{user}}</th>
+                    <th><button><a href="{%url 'followU' user.id%}">Follow</a>
+                        </button></th>
                 </tr>
 
                 <tr>
-                    <td>Followers:</td>
-                    <td>Following:</td>
+                    <td>Followers:{{following|length}}</td>
+                    <td>Following:{{followers|length}}</td>
                 </tr>
 
                 <tr>
@@ -34,9 +33,20 @@
     </div>
 
 </div>
+<ul class="messages" id="messages-list">
+    {% if messages %} {% for message in messages %}
+    <li>
+        {% if message.tags %}
+        <div class="alert alert-{{ message.tags }} msg fade show" role="alert">{{ message }}</div>
+        {% else %}
+        <div class="alert alert-info msg fade show" role="alert">{{ message }}</div>
+        {% endif %}
+    </li>
+    {% endfor %} {% endif %}
+</ul>
 <h1 class="text-center">POSTS</h1>
 
-<div class="container" style="display:flex; flex-wrap: wrap; border: solid black 2px; margin:15px; ">
+<div class="container" style="border: 2px solid;display:flex;padding:2px; flex-wrap: wrap;  margin:15px; width:100vh ">
     {%for post in post%}
     <div class="panel panel-default " style="width:max-content ">
         <!-- <div class="panel-heading ">{{post.userpost}}</div> -->
@@ -53,4 +63,26 @@
 </div>
 
 </div>
+<h1 class="text-center">Related Accounts</h1>
+<div class="container text-center" style="display:flex; flex-wrap: wrap; border: solid black 2px; margin:15px; ">
+    {%for users in users%}
+    <a href="{%url 'oneuser' users.id%}">
+        <div class="panel panel-default " style="width:max-content ">
+            <!-- <div class="panel-heading ">{{post.userpost}}</div> -->
+            <div class="panel-body" style="width:200px;height:200px;">
+                <div class="circular-landscape" style="background-color:black;margin:10px;display:inline-block;position:relative; width:100px;height:100px;overflow:hidden;border-radius: 50%;">
+                    <img src="{{users.employee.profile_img.url}}" alt="" style=" width:100%; height:100%; ">
+                </div>
+            </div>
+            <h4 class='text-center'>{{users.username}}</h4>
+            <button style="width:100%"><a href="{%url 'followU' users.id%}">Follow</a></button>
+            <!-- <div class="panel-footer ">Panel Footer</div> -->
+        </div>
+    </a>
+    {%empty%}
+    <h1>0 posts</h1>
+    {%endfor%}
+</div>
+
+
 {%endblock%}

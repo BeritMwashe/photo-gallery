@@ -1,0 +1,21 @@
+{%load bootstrap3%}
+
+<div class="container-fluid">
+    <img src="{{post.userpost.url}}" width="100%" height="80%" alt=" "></div>
+<div class="container">{{post.caption}}</div>
+<button><a href="{%url 'like' post.id%}">Like {{likes|length}}</a></button><button><a href="{%url 'dislike' post.id%}">DiLikes {{DisLikes|length}}</a></button> {%block scripts%}
+<a href="{%url 'addcomment' post.id%}">Comment</a>
+<a href="{%url 'deleteimg' post.id%}">delete</a>
+<a href="{%url 'updatecap' post.id%}">update</a>
+<div class="container">{%for comments in comments%}{{comments.comment|safe}} </div>{%endfor%}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js ">
+</script>
+{%bootstrap_javascript%}
+<script>
+    document.getElementsByClassName("close").addEventListener(
+        'click',
+        function() {
+            this.parentElemlement.style.display = 'none'
+        })
+</script>
+{%endblock%}
